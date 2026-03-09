@@ -5,7 +5,6 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
 [![GitHub issues](https://img.shields.io/github/issues/khoih-prog/Teensy41_AsyncTCP.svg)](http://github.com/khoih-prog/Teensy41_AsyncTCP/issues)
 
-
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Donate to my libraries using BuyMeACoffee" style="height: 50px !important;width: 181px !important;" ></a>
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange.svg?logo=buy-me-a-coffee&logoColor=FFDD00" style="height: 20px !important;width: 200px !important;" ></a>
 
@@ -25,7 +24,7 @@
   * [Manual Install](#manual-install)
   * [VS Code & PlatformIO](#vs-code--platformio)
 * [HOWTO Fix `Multiple Definitions` Linker Error](#howto-fix-multiple-definitions-linker-error)
-* [Original documentation](#Original-documentation)
+* [Orignal documentation](#Orignal-documentation)
   * [AsyncClient and AsyncServer](#AsyncClient-and-AsyncServer)
   * [AsyncPrinter](#AsyncPrinter)
   * [AsyncTCPbuffer](#AsyncTCPbuffer)
@@ -82,6 +81,7 @@ to apply the better and faster **asynchronous** feature of the **powerful** [ESP
 
 1. **Teensy 4.1 using QNEthernet Library**
 
+
 ---
 ---
 
@@ -89,7 +89,7 @@ to apply the better and faster **asynchronous** feature of the **powerful** [ESP
 
  1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
  2. [`Teensy core v1.57+`](https://www.pjrc.com/teensy/td_download.html) for Teensy 4.1
- 3. [`QNEthernet Library version v0.16.0+`](https://github.com/ssilverman/QNEthernet) for Teensy 4.1 built-in Ethernet.
+ 3. [`QNEthernet Library version v0.15.0+`](https://github.com/ssilverman/QNEthernet) for Teensy 4.1 built-in Ethernet.
 
 ---
 ---
@@ -126,14 +126,14 @@ The current library implementation, using `xyz-Impl.h` instead of standard `xyz.
 
 You can include this `.hpp` file
 
-```cpp
+```
 // Can be included as many times as necessary, without `Multiple Definitions` Linker Error
 #include "Teensy41_AsyncTCP.hpp"     //https://github.com/khoih-prog/Teensy41_AsyncTCP
 ```
 
 in many files. But be sure to use the following `.h` file **in just 1 `.h`, `.cpp` or `.ino` file**, which must **not be included in any other file**, to avoid `Multiple Definitions` Linker Error
 
-```cpp
+```
 // To be included only in main(), .ino with setup() to avoid `Multiple Definitions` Linker Error
 #include "Teensy41_AsyncTCP.h"       //https://github.com/khoih-prog/Teensy41_AsyncTCP
 ```
@@ -145,7 +145,7 @@ Check the new [**multiFileProject** example](examples/multiFileProject) for a `H
 ---
 
 
-## Original documentation
+## Orignal documentation
 
 Check [AsyncTCP Library](https://github.com/me-no-dev/AsyncTCP)
 
@@ -197,7 +197,7 @@ It is exactly what it sounds like. This is a standard, synchronous blocking TCP 
 Following is the debug terminal when running example [FullyFeatured_QNEthernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/QNEthernet/FullyFeatured_QNEthernet) on **Teensy 4.1 using QNEthernet Library** to demonstrate the operation of Async MQTT request, relied on [Teensy41_AsyncTCP Library](https://github.com/khoih-prog/Teensy41_AsyncTCP)
 
 
-```cpp
+```
 Starting FullyFeatured_QNEthernet on TEENSY 4.1
 AsyncMQTT_Generic v1.7.0 for Teensy 4.1 QNEthernet
 Initialize Ethernet using DHCP => Connected! IP address:192.168.2.107
@@ -262,7 +262,7 @@ Publish acknowledged.
 
 Following is the debug terminal when running example [FullyFeatured_QNEthernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/QNEthernet/FullyFeatured_QNEthernet) on **Teensy 4.1 using QNEthernet Library** to demonstrate the operation of Async MQTT request, relied on [Teensy41_AsyncTCP Library](https://github.com/khoih-prog/Teensy41_AsyncTCP)
 
-```cpp
+```
 Starting FullyFeatured_QNEthernet on TEENSY 4.1
 AsyncMQTT_Generic v1.7.0 for Teensy 4.1 QNEthernet
 Initialize Ethernet using static IP => Connected! IP address:192.168.2.222
@@ -370,7 +370,6 @@ Submit issues to: [Teensy41_AsyncTCP issues](https://github.com/khoih-prog/Teens
 6. Fix issue with slow browsers or network
 7. Remove hard-code if possible
 8. Improve debug messages by adding functions to display `error/state messages` instead of `cryptic error/state number`
-9. Add astyle using `allman` style. Restyle the library
 
 ---
 ---
@@ -411,7 +410,7 @@ If you want to contribute to this project:
 
 ## Copyright
 
-- Copyright (c) 2016- Hristo Gochkov
-- Copyright (c) 2022- Khoi Hoang
+- Copyright 2016- Hristo Gochkov
+- Copyright 2022- Khoi Hoang
 
 

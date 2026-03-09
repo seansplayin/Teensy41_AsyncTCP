@@ -10,8 +10,8 @@
 
   Based on and modified from :
 
-  1) ESPAsyncTCP    (https://github.com/me-no-dev/ESPAsyncTCP)
-  2) AsyncTCP       (https://github.com/me-no-dev/AsyncTCP)
+  1) ESPAsyncTCP   [](https://github.com/me-no-dev/ESPAsyncTCP)
+  2) AsyncTCP      [](https://github.com/me-no-dev/AsyncTCP)
 
   Built by Khoi Hoang https://github.com/khoih-prog/Teensy41_AsyncTCP
 
@@ -35,7 +35,7 @@
 
 /////////////////////////////////////////////////
 
-AsyncPrinter::AsyncPrinter()
+inline AsyncPrinter::AsyncPrinter()
   : _client(NULL)
   , _data_cb(NULL)
   , _data_arg(NULL)
@@ -48,7 +48,7 @@ AsyncPrinter::AsyncPrinter()
 
 /////////////////////////////////////////////////
 
-AsyncPrinter::AsyncPrinter(AsyncClient *client, size_t txBufLen)
+inline AsyncPrinter::AsyncPrinter(AsyncClient *client, size_t txBufLen)
   : _client(client)
   , _data_cb(NULL)
   , _data_arg(NULL)
@@ -69,14 +69,14 @@ AsyncPrinter::AsyncPrinter(AsyncClient *client, size_t txBufLen)
 
 /////////////////////////////////////////////////
 
-AsyncPrinter::~AsyncPrinter()
+inline AsyncPrinter::~AsyncPrinter()
 {
   _on_close();
 }
 
 /////////////////////////////////////////////////
 
-void AsyncPrinter::onData(ApDataHandler cb, void *arg)
+inline void AsyncPrinter::onData(ApDataHandler cb, void *arg)
 {
   _data_cb = cb;
   _data_arg = arg;
@@ -84,7 +84,7 @@ void AsyncPrinter::onData(ApDataHandler cb, void *arg)
 
 /////////////////////////////////////////////////
 
-void AsyncPrinter::onClose(ApCloseHandler cb, void *arg)
+inline void AsyncPrinter::onClose(ApCloseHandler cb, void *arg)
 {
   _close_cb = cb;
   _close_arg = arg;
@@ -92,7 +92,7 @@ void AsyncPrinter::onClose(ApCloseHandler cb, void *arg)
 
 /////////////////////////////////////////////////
 
-int AsyncPrinter::connect(IPAddress ip, uint16_t port)
+inline int AsyncPrinter::connect(IPAddress ip, uint16_t port)
 {
   if (_client != NULL && connected())
     return 0;
@@ -109,7 +109,6 @@ int AsyncPrinter::connect(IPAddress ip, uint16_t port)
     ((AsyncPrinter*)(obj))->_onConnect(c);
   }, this);
 
-
   if (_client->connect(ip, port))
   {
     while (_client && _client->state() < 4)
@@ -123,7 +122,7 @@ int AsyncPrinter::connect(IPAddress ip, uint16_t port)
 
 /////////////////////////////////////////////////
 
-int AsyncPrinter::connect(const char *host, uint16_t port)
+inline int AsyncPrinter::connect(const char *host, uint16_t port)
 {
   if (_client != NULL && connected())
     return 0;
@@ -153,7 +152,7 @@ int AsyncPrinter::connect(const char *host, uint16_t port)
 
 /////////////////////////////////////////////////
 
-void AsyncPrinter::_onConnect(AsyncClient *c)
+inline void AsyncPrinter::_onConnect(AsyncClient *c)
 {
   (void) c;
 
@@ -176,12 +175,12 @@ void AsyncPrinter::_onConnect(AsyncClient *c)
 
 /////////////////////////////////////////////////
 
-AsyncPrinter::operator bool()
+inline AsyncPrinter::operator bool()
 {
   return connected();
 }
 
-AsyncPrinter & AsyncPrinter::operator=(const AsyncPrinter &other)
+inline AsyncPrinter & AsyncPrinter::operator=(const AsyncPrinter &other)
 {
   if (_client != NULL)
   {
@@ -213,14 +212,14 @@ AsyncPrinter & AsyncPrinter::operator=(const AsyncPrinter &other)
 
 /////////////////////////////////////////////////
 
-size_t AsyncPrinter::write(uint8_t data)
+inline size_t AsyncPrinter::write(uint8_t data)
 {
   return write(&data, 1);
 }
 
 /////////////////////////////////////////////////
 
-size_t AsyncPrinter::write(const uint8_t *data, size_t len)
+inline size_t AsyncPrinter::write(const uint8_t *data, size_t len)
 {
   if (_tx_buffer == NULL || !connected())
     return 0;
@@ -258,14 +257,14 @@ size_t AsyncPrinter::write(const uint8_t *data, size_t len)
 
 /////////////////////////////////////////////////
 
-bool AsyncPrinter::connected()
+inline bool AsyncPrinter::connected()
 {
   return (_client != NULL && _client->connected());
 }
 
 /////////////////////////////////////////////////
 
-void AsyncPrinter::close()
+inline void AsyncPrinter::close()
 {
   if (_client != NULL)
     _client->close(true);
@@ -273,7 +272,7 @@ void AsyncPrinter::close()
 
 /////////////////////////////////////////////////
 
-size_t AsyncPrinter::_sendBuffer()
+inline size_t AsyncPrinter::_sendBuffer()
 {
   size_t available = _tx_buffer->available();
 
@@ -302,7 +301,7 @@ size_t AsyncPrinter::_sendBuffer()
 
 /////////////////////////////////////////////////
 
-void AsyncPrinter::_onData(void *data, size_t len)
+inline void AsyncPrinter::_onData(void *data, size_t len)
 {
   if (_data_cb)
     _data_cb(_data_arg, this, (uint8_t*)data, len);
@@ -310,7 +309,7 @@ void AsyncPrinter::_onData(void *data, size_t len)
 
 /////////////////////////////////////////////////
 
-void AsyncPrinter::_on_close()
+inline void AsyncPrinter::_on_close()
 {
   if (_client != NULL)
   {
@@ -330,7 +329,7 @@ void AsyncPrinter::_on_close()
 
 /////////////////////////////////////////////////
 
-void AsyncPrinter::_attachCallbacks()
+inline void AsyncPrinter::_attachCallbacks()
 {
   _client->onPoll([](void *obj, AsyncClient * c)
   {
