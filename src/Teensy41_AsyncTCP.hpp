@@ -5,8 +5,8 @@
 
   Based on and modified from :
 
-  1) ESPAsyncTCP   [](https://github.com/me-no-dev/ESPAsyncTCP)
-  2) AsyncTCP      [](https://github.com/me-no-dev/AsyncTCP)
+  1) ESPAsyncTCP  [](https://github.com/me-no-dev/ESPAsyncTCP)
+  2) AsyncTCP     [](https://github.com/me-no-dev/AsyncTCP)
 
   Built by Khoi Hoang https://github.com/khoih-prog/Teensy41_AsyncTCP
 
@@ -106,6 +106,9 @@ class ACErrorTracker;
 // occuring and count.
 // #define DEBUG_MORE 1
 
+// Define DEBUG_MORE here to ensure class members are declared
+#define DEBUG_MORE 1
+
 /////////////////////////////////////////////////
 
 class ACErrorTracker 
@@ -169,6 +172,7 @@ typedef std::function<void(void*, AsyncClient*, err_t error)> AcErrorHandler;
 typedef std::function<void(void*, AsyncClient*, void *data, size_t len)> AcDataHandler;
 typedef std::function<void(void*, AsyncClient*, struct pbuf *pb)> AcPacketHandler;
 typedef std::function<void(void*, AsyncClient*, uint32_t time)> AcTimeoutHandler;
+typedef std::function<void(void*, AsyncClient*)> AcConnectHandler;
 typedef std::function<void(void*, size_t event)> AsNotifyHandler;
 
 /////////////////////////////////////////////////
@@ -399,8 +403,8 @@ class AsyncServer
     void setNoDelay(bool nodelay);
     bool getNoDelay();
     uint8_t status();
-
-  protected:
+    
+  private:
     err_t _accept(tcp_pcb* pcb, err_t err);
     static err_t _s_accept(void *arg, tcp_pcb* pcb, err_t err);
 };
