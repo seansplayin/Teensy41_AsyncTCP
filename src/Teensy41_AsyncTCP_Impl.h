@@ -701,4 +701,5 @@ inline err_t AsyncServer::_s_accept(void *arg, tcp_pcb* pcb, err_t err) {
   return reinterpret_cast<AsyncServer*>(arg)->_accept(pcb, err);
 }
 
+
 #endif /* _TEENSY41_ASYNC_TCP_IMPL_H_ */
