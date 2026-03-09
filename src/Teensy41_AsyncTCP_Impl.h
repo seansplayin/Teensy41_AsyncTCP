@@ -107,7 +107,7 @@ inline void ACErrorTracker::clearClient() {
 }
 
 #if DEBUG_T41_ASYNC_TCP
-extern size_t AsyncClient::_connectionCount;
+size_t AsyncClient::_connectionCount = 0;
 #endif
 
 inline AsyncClient::AsyncClient(tcp_pcb* pcb) :
