@@ -40,14 +40,15 @@ extern "C"
   #include "lwip/init.h"
 }
 
-// Define DEBUG_MORE to enable additional debug features like _connectionId
-#define DEBUG_MORE 1
-
-inline ACErrorTracker::ACErrorTracker(AsyncClient *c) : _client(c), _close_error(ERR_OK), _errored(EE_OK) {
+inline ACErrorTracker::ACErrorTracker(AsyncClient *c)
+  : _client(c)
+  , _close_error(ERR_OK)
+  , _errored(EE_OK)
+  , _connectionId(0)
+{
 #ifdef DEBUG_MORE
   _error_event_cb = NULL;
   _error_event_cb_arg = NULL;
-  _connectionId = 0;
 #endif
 }
 
