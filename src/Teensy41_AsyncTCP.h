@@ -77,7 +77,7 @@
 
 #include <cbuf.hpp>
 #include <cbuf_Impl.h>
-#define DEBUG_MORE 1
+#undef DEBUG_MORE
 
 // KH, Not in use, keep for future
 //////////////////////

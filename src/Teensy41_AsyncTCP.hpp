@@ -107,8 +107,7 @@ class ACErrorTracker;
 // #define DEBUG_MORE 1
 
 // Define DEBUG_MORE here to ensure class members are declared
-#define DEBUG_MORE 1
-
+#undef DEBUG_MORE
 /////////////////////////////////////////////////
 
 class ACErrorTracker 
