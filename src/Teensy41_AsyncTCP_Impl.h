@@ -28,6 +28,7 @@
 #ifndef _TEENSY41_ASYNC_TCP_IMPL_H_
 #define _TEENSY41_ASYNC_TCP_IMPL_H_
 
+#include <Arduino.h>
 #include "Teensy41_AsyncTCP.hpp"
 
 extern "C"
@@ -106,10 +107,6 @@ inline bool ACErrorTracker::hasClient() const {
 inline void ACErrorTracker::clearClient() {
   _client = NULL;
 }
-
-#if DEBUG_T41_ASYNC_TCP
-extern size_t AsyncClient::_connectionCount;
-#endif
 
 inline AsyncClient::AsyncClient(tcp_pcb* pcb) :
   _connect_cb(0), _connect_cb_arg(0), _discard_cb(0), _discard_cb_arg(0), _sent_cb(0), _sent_cb_arg(0), _error_cb(0), _error_cb_arg(0), _recv_cb(0), _recv_cb_arg(0), _pb_cb(0), _pb_cb_arg(0), _timeout_cb(0), _timeout_cb_arg(0), _poll_cb(0), _poll_cb_arg(0), _pcb_busy(false),
