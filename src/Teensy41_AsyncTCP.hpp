@@ -70,6 +70,7 @@
 
 /////////////////////////////////////////////
 
+#include <Arduino.h>
 #include <QNEthernet.h>
 
 #include "Teensy41_AsyncTCP_Debug.h"
